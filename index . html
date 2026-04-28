@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For You ❤️</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background-color: #ffe6f0;
+      padding: 50px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: pink;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Hey ❤️</h2>
+    <p>Ready for a few questions?</p>
+    <button onclick="nextQ()">Start</button>
+
+    <p id="question"></p>
+  </div>
+
+<script>
+let questions = [
+  "When did you first feel something for me?",
+  "What do you like most about me?",
+  "Your favorite memory with me?",
+  "Do you love me? ❤️"
+];
+
+let i = 0;
+
+function nextQ() {
+  if (i < questions.length) {
+    document.getElementById("question").innerText = questions[i];
+    i++;
+  } else {
+    document.getElementById("question").innerText = "Okay… now come tell me in person 🥺❤️";
+  }
+}
+</script>
+
+</body>
+</html>
