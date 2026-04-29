@@ -11,13 +11,14 @@
     }
     .box {
       background: white;
-      padding: 20px;
+      padding: 25px;
       border-radius: 15px;
       display: inline-block;
+      max-width: 300px;
     }
     button {
       margin: 10px;
-      padding: 10px 20px;
+      padding: 10px 15px;
       border: none;
       border-radius: 10px;
       background-color: pink;
@@ -27,32 +28,77 @@
 </head>
 
 <body>
-  <div class="box">
-    <h2>Hey ❤️</h2>
-    <p>Ready for a few questions?</p>
-    <button onclick="nextQ()">Start</button>
 
-    <p id="question"></p>
-  </div>
+<div class="box">
+  <h2>Hey ❤️</h2>
+  <p id="question">Ready for something cute?</p>
+  <button onclick="start()">Start</button>
+
+  <div id="buttons"></div>
+  <p id="response"></p>
+</div>
 
 <script>
-let questions = [
-  "When did you first feel something for me?",
-  "What do you like most about me?",
-  "Your favorite memory with me?",
-  "Do you love me? ❤️"
+
+let qna = [
+  {
+    q: "Do you remember the first time we talked?",
+    yes: "I knew you would remember 🥺❤️",
+    no: "Hmm... think again. You know this 👀",
+    maybe: "How can you forget that 😭"
+  },
+  {
+    q: "Was I special to you from the beginning?",
+    yes: "That makes me really happy ❤️",
+    no: "Ouch... but okay, I’ll accept it 😌",
+    maybe: "You’re confusing me now 😒"
+  },
+  {
+    q: "Do you like spending time with me?",
+    yes: "That’s my favorite thing too 💖",
+    no: "Liar. I know you do 😏",
+    maybe: "Half answer ah? Not allowed 😤"
+  },
+  {
+    q: "Do you love me? ❤️",
+    yes: "I knew it… 🥺❤️",
+    no: "Still… I do 😌",
+    maybe: "Say it properly 😭"
+  }
 ];
 
 let i = 0;
 
-function nextQ() {
-  if (i < questions.length) {
-    document.getElementById("question").innerText = questions[i];
-    i++;
+function start() {
+  showQuestion();
+}
+
+function showQuestion() {
+  if (i < qna.length) {
+    document.getElementById("question").innerText = qna[i].q;
+
+    document.getElementById("buttons").innerHTML = `
+      <button onclick="answer('yes')">Yes</button>
+      <button onclick="answer('no')">No</button>
+      <button onclick="answer('maybe')">I don’t remember</button>
+    `;
   } else {
-    document.getElementById("question").innerText = "Okay… now come tell me in person 🥺❤️";
+    document.getElementById("question").innerText = "Okay… now come tell me everything in person 🥺❤️";
+    document.getElementById("buttons").innerHTML = "";
   }
 }
+
+function answer(choice) {
+  let res = qna[i][choice];
+  document.getElementById("response").innerText = res;
+  i++;
+
+  setTimeout(() => {
+    document.getElementById("response").innerText = "";
+    showQuestion();
+  }, 2000);
+}
+
 </script>
 
 </body>
